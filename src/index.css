@@ -185,7 +185,13 @@ aside .sidebar a.active span {
 }
 
 aside .sidebar a:hover {
-    color: var(--color-primary);
+    background-color: var(--color-light);
+    color: var(--color-white);
+}
+
+/*Opcion para salir*/
+aside .sidebar a.salir:hover{
+    color: var(--color-danger);
 }
 
 aside .sidebar a:hover span {
@@ -210,3 +216,10 @@ main {
 
 }
 
+.estadistica {
+    background:var(--color-info-light);
+    border-radius: 2%;
+    width: 550px;
+    margin-left: 5%; /* Deja espacio para el aside */
+    margin-top: 3%;
+}

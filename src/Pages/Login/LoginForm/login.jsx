@@ -1,35 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../LoginForm/login.css';
 import { Notyf } from 'notyf';
 import 'notyf/notyf.min.css';
 import { messages } from '../LoginForm/logindatadays';
 
 const Login = () => {
-
     const notyf = new Notyf({
-        duration: 3000,  // Duración de cada notificación
-        position: {
-            x: 'center',
-            y: 'top',
-        },
+        duration: 3000,
+        position: { x: 'center', y: 'top' },
         types: [
-            {
-                type: 'success',
-                background: '#4CAF50',
-            },
-            {
-                type: 'error',
-                background: '#F44336',
-            },
+            { type: 'success', background: '#4CAF50' },
+            { type: 'error', background: '#F44336' },
         ],
-        dismissible: true,  // Las notificaciones pueden ser cerradas por el usuario
-        maxNotifications: 1,  // Limitar a una notificación visible a la vez
+        dismissible: true,
+        maxNotifications: 1,
     });
 
     const validCredentials = {
         username: 'admin',
         password: '123',
+        role: 'admin',
+    };
+
+    const validCredentialsAlmacen = {
+        username: 'almacenero',
+        password: '12345',
+        role: 'almacen',
     };
 
     const [username, setUsername] = useState('');
@@ -52,15 +49,20 @@ const Login = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        // Si ya hay una notificación activa, la cerramos
         notyf.dismissAll();
 
-        if (username === validCredentials.username && password === validCredentials.password) {
+        if ((username === validCredentials.username && password === validCredentials.password) ||
+            (username === validCredentialsAlmacen.username && password === validCredentialsAlmacen.password)) {
+            
+            const role = username === validCredentials.username ? 'admin' : 'almacen';
             localStorage.setItem('isAuthenticated', 'true');
+            localStorage.setItem('role', role);
+            localStorage.setItem('userName', username);
+
             notyf.success('¡Has iniciado sesión exitosamente!');
 
             setTimeout(() => {
-                navigate('/el_buen_lector/Pages/Dasboard/Dasboard');
+                navigate(role === 'admin' ? '/el_buen_lector/Pages/Dasboard/Dasboard' : '/el_buen_lector/Pages/Libros/Libros');
             }, 1000);
         } else {
             notyf.error('Usuario y/o contraseña incorrectos.');
@@ -108,7 +110,8 @@ const Login = () => {
                         </div>
                         <button type="submit" className="btn btn-dark w-100 mt-3">Comencemos</button>
                         <div className="text-center mt-3">
-                            <Link to="#" className="text-white fw-bold">Olvidé mi contraseña</Link>
+                            <a href="#" className="text-white fw-bold">Olvidé mi contraseña</a>
+                            {/*<Link to="#" className="text-white fw-bold">Olvidé mi contraseña</Link>*/}
                         </div>
                     </form>
                 </div>

@@ -25,11 +25,11 @@ const NavbarAdmin = () => {
                     </div>
                 </div>
                 <div className="sidebar">
-                    <Link className="nav-link text-white" to="/el_buen_lector/Pages/Dasboard/Dasboard">
+                    <Link className="active" to="/el_buen_lector/Pages/Dasboard/Dasboard">
                         <span className="material-symbols-sharp">grid_view</span>
                         <h3>Inicio</h3>
                     </Link>
-                    <Link className="active" to="/el_buen_lector/Pages/Libros/Libros">
+                    <Link to="/el_buen_lector/Pages/Libros/Libros">
                         <span className="material-symbols-sharp">library_books</span>
                         <h3>Libros</h3>
                     </Link>
@@ -48,11 +48,11 @@ const NavbarAdmin = () => {
                     <Link to="/el_buen_lector/Pages/Reportes/Reportes">
                         <span className="material-symbols-sharp">picture_as_pdf</span>
                         <h3>Reportes</h3>
-                        </Link>
+                    </Link>
                     <Link to="/el_buen_lector/Pages/Usuarios/Usuarios">
                         <span className="material-symbols-sharp">group</span>
                         <h3>Usuarios</h3>
-                        </Link>
+                    </Link>
                     <Link to="/el_buen_lector/Pages/Configuracion/Configuracion">
                         <span className="material-symbols-sharp">settings</span>
                         <h3>Configuracion</h3>
